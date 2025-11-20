@@ -2,7 +2,7 @@
   <div id="screen-home" class="screen active">
     <div class="header">
       <div class="menu-icon">☰</div>
-      <img src="https://inatel.br/home/images/logo-inatel.jpg" alt="Inatel Logo" class="logo">
+      <img src="https://inatel.br/home/images/logo-inatel.png" alt="Inatel Logo" class="logo">
       <div class="user-icon">👤</div>
     </div>
     <div class="welcome-banner">
@@ -13,7 +13,7 @@
       <div class="card-menu">📊<br>Notas</div>
       <div class="card-menu">📅<br>Horários</div>
       <div class="card-menu">📝<br>Frequência</div>
-      <div class="card-menu highlight" onclick="goToScreen('list')">
+      <div class="card-menu highlight" onclick="goToScreen('list'); loadSavedAppointments()">
         ❤️<br>Apoio<br>Psicológico
       </div>
       <div class="card-menu">💰<br>Financeiro</div>
@@ -24,9 +24,19 @@
   <div id="screen-list" class="screen">
     <div class="header-back">
       <span onclick="goToScreen('home')">⬅ Voltar</span>
-      <h3>Escolha o Profissional</h3>
+      <h3>Apoio Psicológico</h3>
     </div>
     <div class="scroll-content">
+      
+      <div id="my-appointments-area" style="display:none; margin-bottom: 20px;">
+        <h4 style="color: #0054a6; margin-bottom: 10px;">Seus Agendamentos:</h4>
+        <div id="saved-list">
+          </div>
+        <hr style="border: 1px solid #eee; margin: 20px 0;">
+      </div>
+
+      <h4 style="margin-bottom: 15px;">Escolha o Profissional</h4>
+      
       <div class="psy-card">
         <div class="psy-photo" style="background-image: url('https://randomuser.me/api/portraits/women/44.jpg')"></div>
         <div class="psy-info">
@@ -64,16 +74,25 @@
       <h3 id="selected-name">Nome do Psi</h3>
     </div>
     <div class="calendar-area">
-      <p><strong>Novembro 2025</strong></p>
+      <p><strong>Selecione o Dia (Novembro):</strong></p>
       <div class="week-days">
         <span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span>
       </div>
       <div class="days-grid">
-        <span>17</span><span class="active-day">18</span><span>19</span><span>20</span><span>21</span>
+        <div class="day" onclick="selectDay(this)">17</div>
+        <div class="day" onclick="selectDay(this)">18</div>
+        <div class="day" onclick="selectDay(this)">19</div>
+        <div class="day" onclick="selectDay(this)">20</div>
+        <div class="day" onclick="selectDay(this)">21</div>
+        <div class="day" onclick="selectDay(this)">24</div>
+        <div class="day" onclick="selectDay(this)">25</div>
+        <div class="day" onclick="selectDay(this)">26</div>
+        <div class="day" onclick="selectDay(this)">27</div>
+        <div class="day" onclick="selectDay(this)">28</div>
       </div>
     </div>
     <div class="time-slots">
-      <p>Horários disponíveis para dia 18/11:</p>
+      <p>Horários disponíveis:</p>
       <div class="slots-grid">
         <button class="slot" onclick="selectTime(this)">08:00</button>
         <button class="slot" onclick="selectTime(this)">10:00</button>
@@ -88,13 +107,13 @@
     <div class="success-content">
       <div class="check-icon">✔</div>
       <h2>Agendamento Confirmado!</h2>
-      <p>Sua sessão foi marcada com sucesso.</p>
+      <p>Sua sessão foi salva.</p>
       <div class="ticket">
         <p><strong>Profissional:</strong> <span id="final-name"></span></p>
-        <p><strong>Data:</strong> 18 de Novembro</p>
+        <p><strong>Data:</strong> <span id="final-day"></span>/11</p>
         <p><strong>Horário:</strong> <span id="final-time"></span></p>
       </div>
-      <button class="btn-primary" onclick="goToScreen('home')">Voltar ao Início</button>
+      <button class="btn-primary" onclick="goToScreen('list'); loadSavedAppointments()">Ver Meus Agendamentos</button>
     </div>
   </div>
 </div>
