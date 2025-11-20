@@ -74,24 +74,40 @@ function loadSavedAppointments() {
   const listDiv = document.getElementById('saved-list');
   const areaDiv = document.getElementById('my-appointments-area');
   listDiv.innerHTML = "";
-
+  
   let appointments = JSON.parse(localStorage.getItem('appointments')) || [];
-
+  
   if (appointments.length > 0) {
     areaDiv.style.display = "block";
+    
     appointments.reverse().forEach(app => {
       const div = document.createElement('div');
       div.className = 'saved-card';
+      
       div.innerHTML = `
-        <div>
-            <strong>${app.psyName}</strong><br>
-            Dia ${app.day}/11 às ${app.time}
+        <div style="display:flex; align-items:center; gap:10px; width:100%">
+            <div class="psy-photo" style="width:40px; height:40px; background-image: url('${app.psyPhoto}')"></div>
+            <div>
+                <strong>${app.psyName}</strong><br>
+                <span style="font-size:0.85rem; color:#666">Dia ${app.day}/11 às ${app.time}</span>
+            </div>
+            <button class="btn-delete" onclick="cancelAppointment(${app.id})">✕</button>
         </div>
-        <span style="color:green">✔</span>
       `;
       listDiv.appendChild(div);
     });
   } else {
     areaDiv.style.display = "none";
+  }
+}
+
+function cancelAppointment(id) {
+  if (confirm("Tem certeza que deseja cancelar este agendamento?")) {
+  
+    let appointments = JSON.parse(localStorage.getItem('appointments')) || [];
+    let updatedList = appointments.filter(app => app.id !== id);
+    localStorage.setItem('appointments', JSON.stringify(updatedList));
+    
+    loadSavedAppointments();
   }
 }

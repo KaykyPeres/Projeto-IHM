@@ -272,3 +272,20 @@ body {
   text-align: left;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
 }
+
+.btn-delete {
+  background-color: #fff0f0;
+  color: #d32f2f;
+  border: 1px solid #d32f2f;
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  margin-left: auto; /* Empurra o botão para a direita */
+  font-weight: bold;
+}
+
+.btn-delete:hover {
+  background-color: #d32f2f;
+  color: white;
+}
