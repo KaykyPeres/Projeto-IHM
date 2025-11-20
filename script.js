@@ -6,18 +6,18 @@ let selectedTime = "";
 function goToScreen(screenId) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById('screen-' + screenId).classList.add('active');
-  
-  if(screenId === 'home') {
+
+  if (screenId === 'home') {
     resetSelection();
   }
 }
 
 function resetSelection() {
-    selectedDay = "";
-    selectedTime = "";
-    document.querySelectorAll('.day').forEach(d => d.classList.remove('selected'));
-    document.querySelectorAll('.slot').forEach(s => s.classList.remove('selected'));
-    checkBooking();
+  selectedDay = "";
+  selectedTime = "";
+  document.querySelectorAll('.day').forEach(d => d.classList.remove('selected'));
+  document.querySelectorAll('.slot').forEach(s => s.classList.remove('selected'));
+  checkBooking();
 }
 
 function selectPsy(name, photoUrl) {
@@ -25,7 +25,7 @@ function selectPsy(name, photoUrl) {
   selectedPsyPhoto = photoUrl;
   document.getElementById('selected-name').innerText = name;
   document.getElementById('selected-photo').style.backgroundImage = `url('${photoUrl}')`;
-  resetSelection(); 
+  resetSelection();
   goToScreen('schedule');
 }
 
@@ -66,7 +66,7 @@ function finishScheduling() {
   document.getElementById('final-name').innerText = selectedPsyName;
   document.getElementById('final-day').innerText = selectedDay;
   document.getElementById('final-time').innerText = selectedTime;
-  
+
   goToScreen('success');
 }
 
@@ -74,9 +74,9 @@ function loadSavedAppointments() {
   const listDiv = document.getElementById('saved-list');
   const areaDiv = document.getElementById('my-appointments-area');
   listDiv.innerHTML = "";
-  
+
   let appointments = JSON.parse(localStorage.getItem('appointments')) || [];
-  
+
   if (appointments.length > 0) {
     areaDiv.style.display = "block";
     appointments.reverse().forEach(app => {

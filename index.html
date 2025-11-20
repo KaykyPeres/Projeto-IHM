@@ -27,22 +27,24 @@
       <h3>Apoio Psicológico</h3>
     </div>
     <div class="scroll-content">
-      
+
       <div id="my-appointments-area" style="display:none; margin-bottom: 20px;">
         <h4 style="color: #0054a6; margin-bottom: 10px;">Seus Agendamentos:</h4>
         <div id="saved-list">
-          </div>
+        </div>
         <hr style="border: 1px solid #eee; margin: 20px 0;">
       </div>
 
       <h4 style="margin-bottom: 15px;">Escolha o Profissional</h4>
-      
+
       <div class="psy-card">
         <div class="psy-photo" style="background-image: url('https://randomuser.me/api/portraits/women/44.jpg')"></div>
         <div class="psy-info">
           <h4>Dra. Ana Souza</h4>
           <p>Terapia Cognitiva</p>
-          <button class="btn-primary" onclick="selectPsy('Dra. Ana Souza', 'https://randomuser.me/api/portraits/women/44.jpg')">Ver Agenda</button>
+          <button class="btn-primary"
+            onclick="selectPsy('Dra. Ana Souza', 'https://randomuser.me/api/portraits/women/44.jpg')">Ver
+            Agenda</button>
         </div>
       </div>
       <div class="psy-card">
@@ -50,15 +52,18 @@
         <div class="psy-info">
           <h4>Dr. Carlos Lima</h4>
           <p>Psicanálise</p>
-          <button class="btn-primary" onclick="selectPsy('Dr. Carlos Lima', 'https://randomuser.me/api/portraits/men/32.jpg')">Ver Agenda</button>
+          <button class="btn-primary"
+            onclick="selectPsy('Dr. Carlos Lima', 'https://randomuser.me/api/portraits/men/32.jpg')">Ver Agenda</button>
         </div>
       </div>
-       <div class="psy-card">
+      <div class="psy-card">
         <div class="psy-photo" style="background-image: url('https://randomuser.me/api/portraits/women/68.jpg')"></div>
         <div class="psy-info">
           <h4>Dra. Maria Paula</h4>
           <p>Gestalt Terapia</p>
-          <button class="btn-primary" onclick="selectPsy('Dra. Maria Paula', 'https://randomuser.me/api/portraits/women/68.jpg')">Ver Agenda</button>
+          <button class="btn-primary"
+            onclick="selectPsy('Dra. Maria Paula', 'https://randomuser.me/api/portraits/women/68.jpg')">Ver
+            Agenda</button>
         </div>
       </div>
     </div>
@@ -69,38 +74,45 @@
       <span onclick="goToScreen('list')">⬅ Voltar</span>
       <h3>Agendar Sessão</h3>
     </div>
-    <div class="profile-summary">
-      <div id="selected-photo" class="psy-photo-large"></div>
-      <h3 id="selected-name">Nome do Psi</h3>
-    </div>
-    <div class="calendar-area">
-      <p><strong>Selecione o Dia (Novembro):</strong></p>
-      <div class="week-days">
-        <span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span>
+
+    <div class="scroll-content">
+      <div class="profile-summary">
+        <div id="selected-photo" class="psy-photo-large"></div>
+        <h3 id="selected-name">Nome do Psi</h3>
       </div>
-      <div class="days-grid">
-        <div class="day" onclick="selectDay(this)">17</div>
-        <div class="day" onclick="selectDay(this)">18</div>
-        <div class="day" onclick="selectDay(this)">19</div>
-        <div class="day" onclick="selectDay(this)">20</div>
-        <div class="day" onclick="selectDay(this)">21</div>
-        <div class="day" onclick="selectDay(this)">24</div>
-        <div class="day" onclick="selectDay(this)">25</div>
-        <div class="day" onclick="selectDay(this)">26</div>
-        <div class="day" onclick="selectDay(this)">27</div>
-        <div class="day" onclick="selectDay(this)">28</div>
+
+      <div class="calendar-area">
+        <p><strong>Selecione o Dia (Novembro):</strong></p>
+        <div class="week-days">
+          <span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span>
+        </div>
+        <div class="days-grid">
+          <div class="day" onclick="selectDay(this)">17</div>
+          <div class="day" onclick="selectDay(this)">18</div>
+          <div class="day" onclick="selectDay(this)">19</div>
+          <div class="day" onclick="selectDay(this)">20</div>
+          <div class="day" onclick="selectDay(this)">21</div>
+          <div class="day" onclick="selectDay(this)">24</div>
+          <div class="day" onclick="selectDay(this)">25</div>
+          <div class="day" onclick="selectDay(this)">26</div>
+          <div class="day" onclick="selectDay(this)">27</div>
+          <div class="day" onclick="selectDay(this)">28</div>
+        </div>
       </div>
-    </div>
-    <div class="time-slots">
-      <p>Horários disponíveis:</p>
-      <div class="slots-grid">
-        <button class="slot" onclick="selectTime(this)">08:00</button>
-        <button class="slot" onclick="selectTime(this)">10:00</button>
-        <button class="slot" onclick="selectTime(this)">14:00</button>
-        <button class="slot" onclick="selectTime(this)">16:30</button>
+
+      <div class="time-slots">
+        <p>Horários disponíveis:</p>
+        <div class="slots-grid">
+          <button class="slot" onclick="selectTime(this)">08:00</button>
+          <button class="slot" onclick="selectTime(this)">10:00</button>
+          <button class="slot" onclick="selectTime(this)">14:00</button>
+          <button class="slot" onclick="selectTime(this)">16:30</button>
+        </div>
       </div>
+
+      <button id="btn-confirm" class="btn-confirm disabled" onclick="finishScheduling()">Confirmar Agendamento</button>
+      <div style="height: 20px;"></div>
     </div>
-    <button id="btn-confirm" class="btn-confirm disabled" onclick="finishScheduling()">Confirmar Agendamento</button>
   </div>
 
   <div id="screen-success" class="screen">
