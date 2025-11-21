@@ -111,3 +111,57 @@ function cancelAppointment(id) {
     loadSavedAppointments();
   }
 }
+
+function showToast(message, type = 'default') {
+  const container = document.getElementById('toast-container');
+  const toast = document.createElement('div');
+  
+  toast.className = `toast ${type}`;
+  toast.innerText = message;
+  
+  container.appendChild(toast);
+  
+  setTimeout(() => {
+    toast.style.animation = "toastDown 0.3s forwards";
+    setTimeout(() => toast.remove(), 300);
+  }, 3000);
+}
+
+function finishScheduling() {
+  const btn = document.getElementById('btn-confirm');
+  btn.classList.add('loading');
+  
+  setTimeout(() => {
+    
+    const appointment = {
+      psyName: selectedPsyName,
+      psyPhoto: selectedPsyPhoto,
+      day: selectedDay,
+      time: selectedTime,
+      id: Date.now() 
+    };
+
+    let appointments = JSON.parse(localStorage.getItem('appointments')) || [];
+    appointments.push(appointment);
+    localStorage.setItem('appointments', JSON.stringify(appointments));
+
+    document.getElementById('final-name').innerText = selectedPsyName;
+    document.getElementById('final-day').innerText = selectedDay;
+    document.getElementById('final-time').innerText = selectedTime;
+    
+    btn.classList.remove('loading');
+    goToScreen('success');
+    
+  }, 1500); 
+}
+
+function cancelAppointment(id) {
+  if (confirm("Deseja realmente cancelar?")) {
+    let appointments = JSON.parse(localStorage.getItem('appointments')) || [];
+    let updatedList = appointments.filter(app => Number(app.id) !== Number(id));
+    localStorage.setItem('appointments', JSON.stringify(updatedList));
+    
+    loadSavedAppointments();
+    showToast("Agendamento cancelado.", "error");
+  }
+}

@@ -281,7 +281,7 @@ body {
   border-radius: 6px;
   font-size: 0.8rem;
   cursor: pointer;
-  margin-left: auto; /* Empurra o botão para a direita */
+  margin-left: auto; 
   font-weight: bold;
 }
 
