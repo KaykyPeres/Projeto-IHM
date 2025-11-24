@@ -1,3 +1,15 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inatel - App Mobile</title>
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
 <div class="mobile-container">
   <div id="screen-home" class="screen active">
     <div class="header">
@@ -9,7 +21,9 @@
           <line x1="3" y1="18" x2="21" y2="18"></line>
         </svg>
       </div>
+
       <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Logo_inatel.png" alt="Inatel" class="logo">
+
       <div class="user-icon">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"
           stroke-linecap="round" stroke-linejoin="round">
@@ -70,10 +84,10 @@
           <h4>Dra. Ana Souza</h4>
           <p>Terapia Cognitiva</p>
           <button class="btn-primary"
-            onclick="selectPsy('Dra. Ana Souza', 'https://randomuser.me/api/portraits/women/44.jpg')">Ver
-            Agenda</button>
+            onclick="selectPsy('Dra. Ana Souza', 'https://randomuser.me/api/portraits/women/44.jpg')">Ver Agenda</button>
         </div>
       </div>
+
       <div class="psy-card delay-2">
         <div class="psy-photo" style="background-image: url('https://randomuser.me/api/portraits/men/32.jpg')"></div>
         <div class="psy-info">
@@ -83,14 +97,14 @@
             onclick="selectPsy('Dr. Carlos Lima', 'https://randomuser.me/api/portraits/men/32.jpg')">Ver Agenda</button>
         </div>
       </div>
+
       <div class="psy-card delay-3">
         <div class="psy-photo" style="background-image: url('https://randomuser.me/api/portraits/women/68.jpg')"></div>
         <div class="psy-info">
           <h4>Dra. Maria Paula</h4>
           <p>Gestalt Terapia</p>
           <button class="btn-primary"
-            onclick="selectPsy('Dra. Maria Paula', 'https://randomuser.me/api/portraits/women/68.jpg')">Ver
-            Agenda</button>
+            onclick="selectPsy('Dra. Maria Paula', 'https://randomuser.me/api/portraits/women/68.jpg')">Ver Agenda</button>
         </div>
       </div>
     </div>
@@ -198,8 +212,7 @@
         <p><strong>Data:</strong> <span id="final-day"></span>/11</p>
         <p><strong>Horário:</strong> <span id="final-time"></span></p>
       </div>
-      <button class="btn-primary" onclick="goToScreen('my-appointments'); loadAppointments()">Ver Minhas
-        Consultas</button>
+      <button class="btn-primary" onclick="goToScreen('my-appointments'); loadAppointments()">Ver Minhas Consultas</button>
       <br>
       <button class="btn-secondary" onclick="goToScreen('home')">Voltar ao Início</button>
     </div>
@@ -225,3 +238,9 @@
 
   <div id="toast-container"></div>
 </div>
+
+<!-- JS -->
+<script src="index.js"></script>
+
+</body>
+</html>
