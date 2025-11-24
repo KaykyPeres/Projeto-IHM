@@ -590,3 +590,59 @@ body {
   background: #fee2e2;
   transform: scale(0.9);
 }
+
+.calendar-carousel {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto; 
+  padding: 10px 5px;
+  
+  scrollbar-width: none; 
+  -ms-overflow-style: none; 
+}
+.calendar-carousel::-webkit-scrollbar {
+  display: none; 
+}
+
+.date-card {
+  min-width: 60px; 
+  height: 75px;
+  background: white;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.date-card:active {
+  transform: scale(0.95);
+}
+
+.week-day {
+  font-size: 0.75rem;
+  color: #888;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.day-number {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.date-card.selected {
+  background: #0054a6;
+  border-color: #0054a6;
+  box-shadow: 0 4px 10px rgba(0, 84, 166, 0.3);
+  transform: translateY(-3px); 
+}
+
+.date-card.selected .week-day,
+.date-card.selected .day-number {
+  color: white; /* Texto fica branco */
+}

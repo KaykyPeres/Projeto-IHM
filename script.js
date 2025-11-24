@@ -35,9 +35,9 @@ function selectPsy(name, photoUrl) {
 }
 
 function selectDay(element) {
-  document.querySelectorAll('.day').forEach(d => d.classList.remove('selected'));
+  document.querySelectorAll('.date-card').forEach(d => d.classList.remove('selected'));
   element.classList.add('selected');
-  selectedDay = element.innerText;
+  selectedDay = element.querySelector('.day-number').innerText;
   checkBooking();
 }
 
