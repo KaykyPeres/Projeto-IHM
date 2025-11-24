@@ -58,8 +58,11 @@ body {
 }
 
 .logo {
-  height: 35px;
+  height: 30px;
+  width: auto;
   filter: brightness(0) invert(1);
+  display: block;
+  object-fit: contain;
 }
 
 .header-back {
@@ -89,7 +92,6 @@ body {
   border-radius: 0 0 25px 25px;
   margin-bottom: 15px;
 }
-
 
 .dashboard-card {
   background: #2d2d2d;
@@ -228,6 +230,11 @@ body {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   align-items: center;
   border: 1px solid #333;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.psy-card:active {
+  transform: scale(0.98);
 }
 
 .psy-info h4 {
@@ -281,6 +288,7 @@ body {
   font-weight: 600;
 }
 
+/* --- AGENDAMENTO --- */
 .profile-summary {
   display: flex;
   flex-direction: column;
@@ -358,7 +366,6 @@ body {
   font-weight: bold;
   color: #fff;
 }
-
 
 .date-card.selected {
   background: #0054a6;
@@ -452,28 +459,46 @@ body {
   }
 }
 
+.success-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  padding: 30px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
 .success-content h2 {
   color: #fff;
+  margin: 10px 0 5px 0;
+  font-size: 1.5rem;
 }
 
 .success-content p {
   color: #aaa;
+  margin: 0;
+  font-size: 1rem;
 }
 
 .check-icon {
   font-size: 5rem;
   color: #28a745;
   margin-bottom: 20px;
-  animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 @keyframes popIn {
   from {
     transform: scale(0);
+    opacity: 0;
   }
 
   to {
     transform: scale(1);
+    opacity: 1;
   }
 }
 
@@ -483,14 +508,32 @@ body {
   padding: 20px;
   border-radius: 16px;
   width: 100%;
-  margin: 25px 0;
+  box-sizing: border-box;
+  margin: 30px 0;
   border-left: 5px solid #28a745;
   text-align: left;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.ticket p {
+  margin: 8px 0;
+  color: #ccc;
 }
 
 .ticket strong {
   color: #fff;
+  font-weight: 600;
+}
+
+.success-content .btn-primary,
+.success-content .btn-secondary {
+  width: 100%;
+  margin-top: 10px;
+}
+
+#appointments-list {
+  padding-bottom: 80px;
 }
 
 .appointment-card-full {
@@ -501,9 +544,10 @@ body {
   display: flex;
   align-items: center;
   gap: 15px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   border-left: 5px solid #0054a6;
   animation: slideIn 0.3s ease forwards;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 @keyframes slideIn {
@@ -518,6 +562,10 @@ body {
   }
 }
 
+.app-card-middle {
+  flex: 1;
+}
+
 .app-card-middle h4 {
   margin: 0 0 5px 0;
   color: #fff;
@@ -525,7 +573,7 @@ body {
 }
 
 .app-card-middle p {
-  margin: 0 0 8px 0;
+  margin: 0 0 5px 0;
   color: #aaa;
   font-size: 0.9rem;
 }
@@ -556,6 +604,11 @@ body {
 .btn-cancel-icon:hover {
   background: rgba(231, 76, 60, 0.3);
 }
+
+.btn-cancel-icon:active {
+  transform: scale(0.9);
+}
+
 
 #toast-container {
   position: absolute;
