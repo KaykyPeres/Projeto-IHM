@@ -1,69 +1,77 @@
 <div class="mobile-container">
   <div id="screen-home" class="screen active">
     <div class="header">
-      <div class="menu-icon">☰</div>
-      <img src="https://inatel.br/home/images/logo-inatel.png" alt="Inatel Logo" class="logo">
-      <div class="user-icon">👤</div>
+      <div class="menu-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </div>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Logo_inatel.png" alt="Inatel" class="logo">
+      <div class="user-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+      </div>
     </div>
+    
     <div class="welcome-banner">
       <h2>Olá, Estudante!</h2>
       <p>Engenharia de Software</p>
     </div>
+
+    <div id="dashboard-notification" class="dashboard-card" style="display: none;" onclick="goToScreen('my-appointments'); loadAppointments()">
+      <div class="dash-icon">🔔</div>
+      <div class="dash-info">
+        <small>Próxima Sessão</small>
+        <h4 id="dash-psy-name">Carregando...</h4>
+        <span id="dash-time">Data e Hora</span>
+      </div>
+      <div class="dash-arrow">➔</div>
+    </div>
+
     <div class="grid-menu">
-      <div class="card-menu">📊<br>Notas</div>
-      <div class="card-menu">📅<br>Horários</div>
-      <div class="card-menu">📝<br>Frequência</div>
-      <div class="card-menu highlight" onclick="goToScreen('list'); loadSavedAppointments()">
+      <div class="card-menu delay-1">📊<br>Notas</div>
+      <div class="card-menu delay-2">📅<br>Horários</div>
+      <div class="card-menu delay-3" onclick="goToScreen('my-appointments'); loadAppointments()">
+        📋<br>Minhas<br>Consultas
+      </div>
+      <div class="card-menu highlight delay-4" onclick="goToScreen('list'); loadSavedAppointments()">
         ❤️<br>Apoio<br>Psicológico
       </div>
-      <div class="card-menu">💰<br>Financeiro</div>
-      <div class="card-menu">📚<br>Biblioteca</div>
+      <div class="card-menu delay-5">💰<br>Financeiro</div>
+      <div class="card-menu delay-6">📚<br>Biblioteca</div>
     </div>
   </div>
 
   <div id="screen-list" class="screen">
     <div class="header-back">
-      <span onclick="goToScreen('home')">⬅ Voltar</span>
+      <span onclick="goToScreen('home')">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Voltar
+      </span>
       <h3>Apoio Psicológico</h3>
     </div>
     <div class="scroll-content">
-
-      <div id="my-appointments-area" style="display:none; margin-bottom: 20px;">
-        <h4 style="color: #0054a6; margin-bottom: 10px;">Seus Agendamentos:</h4>
-        <div id="saved-list">
-        </div>
-        <hr style="border: 1px solid #eee; margin: 20px 0;">
-      </div>
-
-      <h4 style="margin-bottom: 15px;">Escolha o Profissional</h4>
-
-      <div class="psy-card">
+      <h4 style="margin-bottom: 15px; color:#444;">Profissionais Disponíveis</h4>
+      
+      <div class="psy-card delay-1">
         <div class="psy-photo" style="background-image: url('https://randomuser.me/api/portraits/women/44.jpg')"></div>
         <div class="psy-info">
           <h4>Dra. Ana Souza</h4>
           <p>Terapia Cognitiva</p>
-          <button class="btn-primary"
-            onclick="selectPsy('Dra. Ana Souza', 'https://randomuser.me/api/portraits/women/44.jpg')">Ver
-            Agenda</button>
+          <button class="btn-primary" onclick="selectPsy('Dra. Ana Souza', 'https://randomuser.me/api/portraits/women/44.jpg')">Ver Agenda</button>
         </div>
       </div>
-      <div class="psy-card">
+      <div class="psy-card delay-2">
         <div class="psy-photo" style="background-image: url('https://randomuser.me/api/portraits/men/32.jpg')"></div>
         <div class="psy-info">
           <h4>Dr. Carlos Lima</h4>
           <p>Psicanálise</p>
-          <button class="btn-primary"
-            onclick="selectPsy('Dr. Carlos Lima', 'https://randomuser.me/api/portraits/men/32.jpg')">Ver Agenda</button>
+          <button class="btn-primary" onclick="selectPsy('Dr. Carlos Lima', 'https://randomuser.me/api/portraits/men/32.jpg')">Ver Agenda</button>
         </div>
       </div>
-      <div class="psy-card">
+       <div class="psy-card delay-3">
         <div class="psy-photo" style="background-image: url('https://randomuser.me/api/portraits/women/68.jpg')"></div>
         <div class="psy-info">
           <h4>Dra. Maria Paula</h4>
           <p>Gestalt Terapia</p>
-          <button class="btn-primary"
-            onclick="selectPsy('Dra. Maria Paula', 'https://randomuser.me/api/portraits/women/68.jpg')">Ver
-            Agenda</button>
+          <button class="btn-primary" onclick="selectPsy('Dra. Maria Paula', 'https://randomuser.me/api/portraits/women/68.jpg')">Ver Agenda</button>
         </div>
       </div>
     </div>
@@ -71,16 +79,19 @@
 
   <div id="screen-schedule" class="screen">
     <div class="header-back">
-      <span onclick="goToScreen('list')">⬅ Voltar</span>
+      <span onclick="goToScreen('list')">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Voltar
+      </span>
       <h3>Agendar Sessão</h3>
     </div>
-
+    
     <div class="scroll-content">
       <div class="profile-summary">
         <div id="selected-photo" class="psy-photo-large"></div>
         <h3 id="selected-name">Nome do Psi</h3>
       </div>
-
+      
       <div class="calendar-area">
         <p><strong>Selecione o Dia (Novembro):</strong></p>
         <div class="week-days">
@@ -109,7 +120,7 @@
           <button class="slot" onclick="selectTime(this)">16:30</button>
         </div>
       </div>
-
+      
       <button id="btn-confirm" class="btn-confirm disabled" onclick="finishScheduling()">Confirmar Agendamento</button>
       <div style="height: 20px;"></div>
     </div>
@@ -125,8 +136,25 @@
         <p><strong>Data:</strong> <span id="final-day"></span>/11</p>
         <p><strong>Horário:</strong> <span id="final-time"></span></p>
       </div>
-      <button class="btn-primary" onclick="goToScreen('list'); loadSavedAppointments()">Ver Meus Agendamentos</button>
+      <button class="btn-primary" onclick="goToScreen('my-appointments'); loadAppointments()">Ver Minhas Consultas</button>
+      <br>
+      <button class="btn-secondary" onclick="goToScreen('home')">Voltar ao Início</button>
     </div>
   </div>
+
+  <div id="screen-my-appointments" class="screen">
+    <div class="header-back">
+      <span onclick="goToScreen('home')">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Voltar
+      </span>
+      <h3>Minhas Consultas</h3>
+    </div>
+    <div id="appointments-list" class="scroll-content"></div>
+    <div id="no-appointments" style="text-align: center; padding: 20px; display: none; color: #666;">
+      <p>Nenhuma consulta agendada.</p>
+    </div>
+  </div>
+  
   <div id="toast-container"></div>
 </div>
