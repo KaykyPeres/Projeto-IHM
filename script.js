@@ -3,27 +3,40 @@ let selectedPsyPhoto = "";
 let selectedDay = "";
 let selectedTime = "";
 
-window.onload = function() {
+window.onload = function () {
   updateDashboard();
   enableDragScroll();
+
+  if (localStorage.getItem('theme') === 'light') {
+    document.body.classList.add('light-mode');
+    document.getElementById('theme-btn').innerText = '🌙';
+  }
 };
+
+function toggleTheme() {
+  document.body.classList.toggle('light-mode');
+  const isLight = document.body.classList.contains('light-mode');
+
+  document.getElementById('theme-btn').innerText = isLight ? '🌙' : '☀️';
+  localStorage.setItem('theme', isLight ? 'light' : 'dark');
+}
 
 function goToScreen(screenId) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById('screen-' + screenId).classList.add('active');
-  
-  if(screenId === 'home') {
+
+  if (screenId === 'home') {
     resetSelection();
-    updateDashboard(); 
+    updateDashboard();
   }
 }
 
 function resetSelection() {
-    selectedDay = "";
-    selectedTime = "";
-    document.querySelectorAll('.day').forEach(d => d.classList.remove('selected'));
-    document.querySelectorAll('.slot').forEach(s => s.classList.remove('selected'));
-    checkBooking();
+  selectedDay = "";
+  selectedTime = "";
+  document.querySelectorAll('.date-card').forEach(d => d.classList.remove('selected'));
+  document.querySelectorAll('.slot').forEach(s => s.classList.remove('selected'));
+  checkBooking();
 }
 
 function selectPsy(name, photoUrl) {
@@ -31,7 +44,7 @@ function selectPsy(name, photoUrl) {
   selectedPsyPhoto = photoUrl;
   document.getElementById('selected-name').innerText = name;
   document.getElementById('selected-photo').style.backgroundImage = `url('${photoUrl}')`;
-  resetSelection(); 
+  resetSelection();
   goToScreen('schedule');
 }
 
@@ -61,22 +74,21 @@ function checkBooking() {
 function updateDashboard() {
   const appointments = JSON.parse(localStorage.getItem('appointments')) || [];
   const dashboardCard = document.getElementById('dashboard-notification');
-  
+
   if (appointments.length > 0) {
     const nextApp = appointments[appointments.length - 1];
-    
     document.getElementById('dash-psy-name').innerText = nextApp.psyName;
     document.getElementById('dash-time').innerText = `Dia ${nextApp.day}/11 às ${nextApp.time}`;
-    dashboardCard.style.display = "flex"; 
+    dashboardCard.style.display = "flex";
   } else {
-    dashboardCard.style.display = "none"; 
+    dashboardCard.style.display = "none";
   }
 }
 
 function finishScheduling() {
   const btn = document.getElementById('btn-confirm');
-  btn.classList.add('loading'); 
-  
+  btn.classList.add('loading');
+
   setTimeout(() => {
     const appointment = {
       psyName: selectedPsyName,
@@ -93,7 +105,7 @@ function finishScheduling() {
     document.getElementById('final-name').innerText = selectedPsyName;
     document.getElementById('final-day').innerText = selectedDay;
     document.getElementById('final-time').innerText = selectedTime;
-    
+
     btn.classList.remove('loading');
     goToScreen('success');
     showToast("Agendamento realizado com sucesso!", "success");
@@ -103,21 +115,18 @@ function finishScheduling() {
 function loadAppointments() {
   const listElement = document.getElementById('appointments-list');
   const emptyMsg = document.getElementById('no-appointments');
-  
-  listElement.innerHTML = ""; 
-  
+  listElement.innerHTML = "";
+
   let appointments = JSON.parse(localStorage.getItem('appointments')) || [];
 
   if (appointments.length === 0) {
-    emptyMsg.style.display = "block"; 
+    emptyMsg.style.display = "block";
   } else {
-    emptyMsg.style.display = "none"; 
-    
+    emptyMsg.style.display = "none";
+
     appointments.reverse().forEach(app => {
-      
       const card = document.createElement('div');
-      card.className = 'appointment-card-full'; 
-      
+      card.className = 'appointment-card-full';
       card.innerHTML = `
         <div class="app-card-left">
           <div class="psy-photo" style="background-image: url('${app.psyPhoto}'); width: 50px; height: 50px;"></div>
@@ -133,10 +142,13 @@ function loadAppointments() {
           </button>
         </div>
       `;
-      
       listElement.appendChild(card);
     });
   }
+}
+
+function loadSavedAppointments() {
+  loadAppointments();
 }
 
 function cancelAppointment(id) {
@@ -144,8 +156,7 @@ function cancelAppointment(id) {
     let appointments = JSON.parse(localStorage.getItem('appointments')) || [];
     let updatedList = appointments.filter(app => Number(app.id) !== Number(id));
     localStorage.setItem('appointments', JSON.stringify(updatedList));
-    
-    loadAppointments(); 
+    loadAppointments();
     updateDashboard();
     showToast("Agendamento cancelado.", "error");
   }
@@ -169,7 +180,7 @@ function enableDragScroll() {
   let startX;
   let scrollLeft;
 
-  if(!slider) return; 
+  if (!slider) return;
 
   slider.addEventListener('mousedown', (e) => {
     isDown = true;
@@ -178,21 +189,14 @@ function enableDragScroll() {
     scrollLeft = slider.scrollLeft;
   });
 
-  slider.addEventListener('mouseleave', () => {
-    isDown = false;
-    slider.classList.remove('active');
-  });
-
-  slider.addEventListener('mouseup', () => {
-    isDown = false;
-    slider.classList.remove('active');
-  });
+  slider.addEventListener('mouseleave', () => { isDown = false; });
+  slider.addEventListener('mouseup', () => { isDown = false; });
 
   slider.addEventListener('mousemove', (e) => {
     if (!isDown) return;
     e.preventDefault();
     const x = e.pageX - slider.offsetLeft;
-    const walk = (x - startX) * 2; 
+    const walk = (x - startX) * 2;
     slider.scrollLeft = scrollLeft - walk;
   });
 }
